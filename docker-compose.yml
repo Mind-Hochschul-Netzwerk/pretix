@@ -2,6 +2,7 @@ version: "3"
 services:
   database:
     image: postgres:9.6-alpine
+    restart: unless-stopped
     container_name: pretix_database
     expose:
       - 5432
@@ -17,6 +18,7 @@ services:
   redis:
     image: redis:latest
     container_name: pretix_redis
+    restart: unless-stopped
     volumes:
       - "${DATA_DIR}/redis:/data"
     expose:
@@ -27,6 +29,7 @@ services:
   pretix:
     image: pretix/standalone:stable
     container_name: pretix_main
+    restart: unless-stopped
     depends_on:
       - database
       - redis
