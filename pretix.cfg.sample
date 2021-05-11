@@ -1,11 +1,12 @@
 [pretix]
-instance_name=pretix.mhn.e-nigma.xyz
-url=https://pretix.mhn.e-nigma.xyz
+instance_name=pretix.docker.localhost
+url=https://pretix.docker.localhost
 currency=EUR
 datadir=/data
 registration=off
 trust_x_forwarded_for=on
 trust_x_forwarded_proto=on
+auth_backends=pretix.base.auth.NativeAuthBackend,pretix_ldap.LDAPAuthBackend
 
 [locale]
 default=de
@@ -20,7 +21,7 @@ host=database
 
 [mail]
 ; See config file documentation for more options
-from=tickets@mhn.e-nigma.xyz
+from=tickets@docker.localhost
 host=smtp
 
 
@@ -31,3 +32,10 @@ sessions=true
 [celery]
 backend=redis://redis/1
 broker=redis://redis/2
+
+[ldap]
+bind_url=ldap://ldap
+bind_dn=cn=admin,dc=mind-hochschul-netzwerk,dc=de
+bind_password=admin
+search_base=ou=people,dc=mind-hochschul-netzwerk,dc=de
+search_filter=(&(objectClass=inetOrgPerson)(mail={email})
