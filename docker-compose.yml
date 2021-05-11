@@ -25,7 +25,7 @@ services:
       - default
 
   pretix:
-    image: pretix/standalone:stable
+    build: "."
     container_name: pretix_main
     restart: unless-stopped
     depends_on:
@@ -39,6 +39,7 @@ services:
     networks:
       - default
       - traefik
+      - ldap
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik
@@ -52,4 +53,8 @@ services:
 
 networks:
   traefik:
+    name: traefik
+    external: true
+  ldap:
+    name: ldap
     external: true
