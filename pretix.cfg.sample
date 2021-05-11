@@ -38,4 +38,4 @@ bind_url=ldap://ldap
 bind_dn=cn=admin,dc=mind-hochschul-netzwerk,dc=de
 bind_password=admin
 search_base=ou=people,dc=mind-hochschul-netzwerk,dc=de
-search_filter=(&(objectClass=inetOrgPerson)(mail={email})
+search_filter=(&(objectClass=inetOrgPerson)(mail={email}))
