@@ -3,7 +3,6 @@ services:
   database:
     image: postgres
     restart: unless-stopped
-    container_name: pretix_database
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
@@ -15,7 +14,6 @@ services:
 
   redis:
     image: redis:latest
-    container_name: pretix_redis
     restart: unless-stopped
     volumes:
       - "${DATA_DIR}/redis:/data"
@@ -24,9 +22,8 @@ services:
     networks:
       - default
 
-  pretix:
+  app:
     build: "."
-    container_name: pretix_main
     restart: unless-stopped
     depends_on:
       - database
