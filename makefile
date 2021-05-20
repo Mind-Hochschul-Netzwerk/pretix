@@ -3,7 +3,7 @@
 
 prod: .env
 	@echo "Starting Production Server"
-	docker-compose up -d --force-recreate
+	docker-compose up -d --force-recreate --remove-orphans
 
 database: .env
 	@echo "Starging Database"
