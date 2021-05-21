@@ -43,8 +43,6 @@ services:
       # Https
       - traefik.http.routers.pretix-sec.entrypoints=websecure
       - traefik.http.routers.pretix-sec.rule=Host(`pretix.${DOMAINNAME}`)
-      - traefik.http.routers.pretix-sec.tls=true
-      - traefik.http.routers.pretix-sec.tls.certresolver=myresolver
       - traefik.http.routers.pretix-sec.middlewares=secheader@file
       - traefik.http.services.pretix.loadbalancer.server.port=80
 
