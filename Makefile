@@ -1,10 +1,7 @@
-.env:
-	$(error .env is missing)
-
-prod: .env
+prod:
 	@echo "Starting Production Server"
-	docker-compose up -d --force-recreate --remove-orphans
+	docker compose up -d --force-recreate --remove-orphans
 
-database: .env
+database:
 	@echo "Starging Database"
-	docker-compose up -d --force-recreate database
+	docker compose up -d --force-recreate database
