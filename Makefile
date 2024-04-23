@@ -1,3 +1,5 @@
+include .env
+
 image:
 	@echo "(Re)building docker image"
 	docker build --no-cache -t local/$(SERVICENAME):latest .
