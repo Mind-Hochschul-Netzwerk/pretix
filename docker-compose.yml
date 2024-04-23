@@ -18,8 +18,9 @@ services:
       - 6379
 
   app:
-    build: "."
+    image: local/${SERVICENAME}
     restart: unless-stopped
+    container_name: ${SERVICENAME}
     depends_on:
       - database
       - redis
