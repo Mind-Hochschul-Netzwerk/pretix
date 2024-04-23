@@ -1,6 +1,5 @@
-version: "3"
 services:
-  database:
+  db:
     image: postgres
     restart: unless-stopped
     environment:
@@ -9,8 +8,6 @@ services:
       - POSTGRES_DB
     volumes:
       - ${DATA_DIR}/postgres/db:/var/lib/postgresql/data
-    networks:
-      - default
 
   redis:
     image: redis:latest
@@ -19,8 +16,6 @@ services:
       - "${DATA_DIR}/redis:/data"
     expose:
       - 6379
-    networks:
-      - default
 
   app:
     build: "."
@@ -38,6 +33,7 @@ services:
       - traefik
       - ldap
     labels:
+      - com.centurylinklabs.watchtower.enable=false
       - traefik.enable=true
       - traefik.docker.network=traefik
       # Https
@@ -45,6 +41,7 @@ services:
       - traefik.http.routers.pretix-sec.rule=Host(`pretix.${DOMAINNAME}`)
       - traefik.http.routers.pretix-sec.middlewares=secheader@file
       - traefik.http.services.pretix.loadbalancer.server.port=80
+
 
 networks:
   traefik:
