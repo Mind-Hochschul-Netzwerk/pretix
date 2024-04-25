@@ -1,12 +1,8 @@
 include .env
 
-image:
-	@echo "(Re)building docker image"
-	docker build --no-cache -t local/$(SERVICENAME):latest .
-
-prod: image
+prod:
 	@echo "Starting Production Server"
-	docker compose up -d --force-recreate --remove-orphans app
+	docker compose up --pull always -d --force-recreate --remove-orphans app
 
 database:
 	@echo "Starging Database"
