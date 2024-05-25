@@ -1,13 +1,13 @@
 services:
   database:
-    image: postgres:13
+    image: postgres:16
     restart: unless-stopped
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
     volumes:
-      - ${DATA_DIR}/postgres/db:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/db/16/data:/var/lib/postgresql/data
 
   redis:
     image: redis:latest
@@ -41,7 +41,6 @@ services:
       - traefik.http.routers.pretix-sec.rule=Host(`pretix.${DOMAINNAME}`)
       - traefik.http.routers.pretix-sec.middlewares=secheader@file
       - traefik.http.services.pretix.loadbalancer.server.port=80
-
 
 networks:
   traefik:
