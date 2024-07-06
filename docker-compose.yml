@@ -8,6 +8,8 @@ services:
       - POSTGRES_DB
     volumes:
       - ${DATA_DIR}/postgres/db/16/data:/var/lib/postgresql/data
+    labels:
+      - com.centurylinklabs.watchtower.enable=false
 
   redis:
     image: redis:latest
@@ -16,6 +18,8 @@ services:
       - "${DATA_DIR}/redis:/data"
     expose:
       - 6379
+    labels:
+      - com.centurylinklabs.watchtower.enable=false
 
   app:
     image: ghcr.io/mind-hochschul-netzwerk/pretix:latest
