@@ -39,12 +39,8 @@ services:
       - ldap
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik
-      # Https
-      - traefik.http.routers.pretix-sec.entrypoints=websecure
-      - traefik.http.routers.pretix-sec.rule=Host(`pretix.${DOMAINNAME}`)
-      - traefik.http.routers.pretix-sec.middlewares=secheader@file
-      - traefik.http.services.pretix.loadbalancer.server.port=80
+      - traefik.http.routers.${SERVICENAME}.middlewares=secheader@file
+      - traefik.http.services.${SERVICENAME}.loadbalancer.server.port=80
 
 networks:
   traefik:
